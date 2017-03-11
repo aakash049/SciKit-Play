@@ -9,6 +9,7 @@ import os
 
 from utils import *
 
+
 class CellRecognizer:
     def __init__(self):
         self.trainingData = []
