@@ -28,3 +28,7 @@ orange_w = 21
 purple_w = 22
 red_w = 23
 yellow_w = 24
+
+
+# name for the cell recognizer file
+cell_recognizer = 'cell.dat'
