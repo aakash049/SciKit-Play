@@ -1,5 +1,5 @@
 import utils
-
+from copy import deepcopy as dc
 
 class MoveMaker:
     def __init__(self):
@@ -75,5 +75,125 @@ class MoveMaker:
 
         return exploding
 
-# TODO: Complete this class with the evaluation functions as discussed.
-# TODO: Create the explosions function to see the benefits from the special candies (if any)
+    def compute_explosions_lines(self, board, start):
+        directions_to_visit = [[(-1, 0), (1, 0)],  # vertical
+                      [(0, -1), (0, 1)]]  # horizontal
+        to_explode = []
+        for dirs in directions_to_visit:
+            open_list = [start]
+            for d in dirs:
+                i = start[0] + d[0]
+                j = start[1] + d[1]
+                while 0 <= i < self.board_size and 0 <= j < self.board_size and board[i][j] != -1 \
+                        and self.candy_matches(board[i][j], board[start[0]][start[1]]):
+                    open_list.append((i, j))
+                    i += d[0]
+                    j += d[1]
+
+            if len(open_list) >= 3:
+                for element in open_list:
+                    if element not in to_explode:
+                        if board[element[0]][element[1]] in self.striped_candies:
+                            to_explode.extend(self.get_striped_exploding_candies(board, element))
+                        else:
+                            to_explode.append(element)
+
+        return to_explode
+
+    # calculates explosions sorted by priority
+    def compute_explosions(self, start, end, board):
+        chocolate_multiplier = 1
+        to_explode = []
+
+        if board[start[0]][start[1]] in self.special_candies and board[end[0]][end[1]] in self.special_candies:
+            score = 500000
+            to_explode = [start, end]
+        else:
+            if board[start[0]][start[1]] == 12:  # chocolate
+                to_explode = self.get_chocolate_exploding_candies(board, board[end[0]][end[1]])
+                chocolate_multiplier = 100
+            else:
+                to_explode = self.compute_explosions_lines(board, start)
+
+            to_explode.sort(key=(lambda x: x[0]))
+            score = self.compute_score(board, to_explode) * chocolate_multiplier
+
+        if len(to_explode) == 4 and board[start[0]][start[1]] != 12:  # striped candy
+            board[start[0]][start[1]] += 1
+            to_explode.remove(start)
+
+        # Slide the other candies down after explosions take place
+        for coord in to_explode:
+            i, j = coord
+
+            while i > 0:
+                if board[i-1][j] != -1 and (i-1, j) not in self.potential_start_coords:
+                    self.potential_start_coords.add((i, j))
+                board[i][j], board[i-1][j] = board[i-1][j], board[i][j]
+                i -= 1
+            board[i][j] = -1
+
+        return score, board
+
+    # evaluates the board for score which can be obtained after a certain move
+    def evaluate_board(self, start, end, board):
+        total_score, new_board = self.compute_explosions(start, end, board)
+        score = total_score
+        multiplier = 1
+        while score > 0:
+            use_new = False
+            if use_new:
+                potential_start = dc(self.potential_start_coords)
+                self.potential_start_coords = set()
+                score = 0
+                for coord in potential_start:
+                    score, new_board = self.compute_explosions((coord[0], coord[1]), end, new_board)
+                    if score > 0:
+                        total_score += score + multiplier * 60
+                        multiplier += 2
+            else:
+                for i in range(0, self.board_size):
+                    for j in range(0, self.board_size):
+                        score, new_board = self.compute_explosions((i, j), end, new_board)
+                        if score > 0:
+                            total_score += score + multiplier * 60
+                            multiplier += 2
+
+        return total_score, new_board
+
+    # checks for all the feasible directions which can traversed for candies
+    def check_direction(self, start, dir):
+            end = (start[0]+dir[0], start[1]+dir[1])
+            board = dc(self.game_board)
+            if start[0] < 0 or start[0] > self.board_size or end[0] < 0 or end[0] > self.board_size\
+                    or start[1] < 0 or start[1] > self.board_size or end[1] < 0 or end[1] > self.board_size:
+                return -1, [], None
+
+            # swap
+            board[start[0]][start[1]], board[end[0]][end[1]] = board[end[0]][end[1]], board[start[0]][start[1]]
+            score_start, start_board = self.evaluate_board(start, end, board)
+            score_end, end_board = self.evaluate_board(end, start, board)
+
+            if score_start > score_end:
+                return score_start, [start, end], start_board
+            else:
+                return score_end, [end, start], end_board
+
+    # main function to start solving the board
+    def solve_board(self, board):
+        self.game_board = board
+        max_score = 0
+        chosen_move = []
+        for i in range(0, 8):
+            for j in range(0, 8):
+                possible_directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                for d in possible_directions:
+                    score, move, b = self.check_direction((i, j), d)
+                    if score >= max_score:
+                        max_score = score
+                        chosen_move = move
+
+        return max_score, chosen_move
+
+# DONE: Complete this class with the evaluation functions as discussed.
+# DONE: Create the explosions function to see the benefits from the special candies (if any)
