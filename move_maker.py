@@ -1,5 +1,7 @@
-import utils
 from copy import deepcopy as dc
+
+import utils
+
 
 class MoveMaker:
     def __init__(self):
@@ -77,7 +79,7 @@ class MoveMaker:
 
     def compute_explosions_lines(self, board, start):
         directions_to_visit = [[(-1, 0), (1, 0)],  # vertical
-                      [(0, -1), (0, 1)]]  # horizontal
+                               [(0, -1), (0, 1)]]  # horizontal
         to_explode = []
         for dirs in directions_to_visit:
             open_list = [start]
@@ -127,9 +129,9 @@ class MoveMaker:
             i, j = coord
 
             while i > 0:
-                if board[i-1][j] != -1 and (i-1, j) not in self.potential_start_coords:
+                if board[i - 1][j] != -1 and (i - 1, j) not in self.potential_start_coords:
                     self.potential_start_coords.add((i, j))
-                board[i][j], board[i-1][j] = board[i-1][j], board[i][j]
+                board[i][j], board[i - 1][j] = board[i - 1][j], board[i][j]
                 i -= 1
             board[i][j] = -1
 
@@ -163,21 +165,21 @@ class MoveMaker:
 
     # checks for all the feasible directions which can traversed for candies
     def check_direction(self, start, dir):
-            end = (start[0]+dir[0], start[1]+dir[1])
-            board = dc(self.game_board)
-            if start[0] < 0 or start[0] > self.board_size or end[0] < 0 or end[0] > self.board_size\
-                    or start[1] < 0 or start[1] > self.board_size or end[1] < 0 or end[1] > self.board_size:
-                return -1, [], None
+        end = (start[0] + dir[0], start[1] + dir[1])
+        board = dc(self.game_board)
+        if start[0] < 0 or start[0] > self.board_size or end[0] < 0 or end[0] > self.board_size \
+                or start[1] < 0 or start[1] > self.board_size or end[1] < 0 or end[1] > self.board_size:
+            return -1, [], None
 
-            # swap
-            board[start[0]][start[1]], board[end[0]][end[1]] = board[end[0]][end[1]], board[start[0]][start[1]]
-            score_start, start_board = self.evaluate_board(start, end, board)
-            score_end, end_board = self.evaluate_board(end, start, board)
+        # swap
+        board[start[0]][start[1]], board[end[0]][end[1]] = board[end[0]][end[1]], board[start[0]][start[1]]
+        score_start, start_board = self.evaluate_board(start, end, board)
+        score_end, end_board = self.evaluate_board(end, start, board)
 
-            if score_start > score_end:
-                return score_start, [start, end], start_board
-            else:
-                return score_end, [end, start], end_board
+        if score_start > score_end:
+            return score_start, [start, end], start_board
+        else:
+            return score_end, [end, start], end_board
 
     # main function to start solving the board
     def solve_board(self, board):
