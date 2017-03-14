@@ -15,7 +15,7 @@ class CellRecognizer:
         self.trainingData = []
         self.targetValues = []
         self.svc = svm.SVC(gamma=0.001, kernel="linear", C=100)
-        self.down_res = 32
+        self.down_res = (32, 32)
 
     def _load(self, path, target_value):
         training_imgs = os.listdir(path)
@@ -26,7 +26,7 @@ class CellRecognizer:
             self.targetValues.append(target_value)
 
     def load(self):
-        pt = 'Training_Data/Cell'
+        pt = 'Training_Data/Cells'
         self._load(pt + '/Blue', blue)
         self._load(pt + '/Blue_Striped_H', blue_s_h)
         self._load(pt + '/Blue_Striped_V', blue_s_v)

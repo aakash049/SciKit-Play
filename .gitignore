@@ -1,5 +1,9 @@
 # PyCharm Files
 
+# CUSTOM FILES
+# We don't need to have the cell.dat file in our VCS, its auto-generated
+cell.dat
+
 .idea/
 ### Python template
 # Byte-compiled / optimized / DLL files

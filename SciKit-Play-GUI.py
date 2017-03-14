@@ -38,9 +38,11 @@ class Ui_widget(object):
         v2 = int(self.c2.text())
         v3 = int(self.c3.text())
         v4 = int(self.c4.text())
-        import board
-        board.board_b = v1, v2, v3, v4
-        board.call()
+        board_coords = (v1, v2, v3, v4)
+        import driver
+        driver_obj = driver.Driver(board_coords)
+        driver_obj.play()
+
 
         #############################################################################################################################
     def setupUi(self, widget):
