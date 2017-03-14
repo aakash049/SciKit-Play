@@ -1,11 +1,10 @@
-from PIL import Image
-
-from sklearn import svm
-from sklearn import cross_validation
-from sklearn.externals import joblib
+import os
 
 import numpy as np
-import os
+from PIL import Image
+from sklearn import cross_validation
+from sklearn import svm
+from sklearn.externals import joblib
 
 from utils import *
 

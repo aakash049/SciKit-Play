@@ -1,7 +1,8 @@
+import os
+
 from PyQt4 import QtCore, QtGui
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import os
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -10,11 +11,14 @@ except AttributeError:
 
 try:
     _encoding = QtGui.QApplication.UnicodeUTF8
+
+
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+
 
 class Ui_widget(object):
     #############################################################################################################################
@@ -45,6 +49,7 @@ class Ui_widget(object):
 
 
         #############################################################################################################################
+
     def setupUi(self, widget):
         widget.setObjectName(_fromUtf8("widget"))
         widget.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -66,7 +71,7 @@ class Ui_widget(object):
         font.setWeight(75)
         self.b3.setFont(font)
         self.b3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"background-color: rgb(68, 163, 252);"))
+                                        "background-color: rgb(68, 163, 252);"))
         self.b3.setObjectName(_fromUtf8("b3"))
         ######## button event3 ##########
         self.b3.clicked.connect(self.callmain)
@@ -79,7 +84,7 @@ class Ui_widget(object):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"border-color: rgb(0, 0, 234);"))
+                                           "border-color: rgb(0, 0, 234);"))
         self.label.setObjectName(_fromUtf8("label"))
         self.b2 = QtGui.QPushButton(widget)
         self.b2.setGeometry(QtCore.QRect(20, 90, 221, 28))
@@ -89,13 +94,13 @@ class Ui_widget(object):
         font.setWeight(75)
         self.b2.setFont(font)
         self.b2.setStyleSheet(_fromUtf8("background-color: rgb(255,255,255);\n"
-"color: rgb(0,0,0);\n"
-"border-width:3px;\n"
-"border-style:groove;\n"
-"border-top-color: rgb(61, 147, 227);\n"
-"border-left-color: rgb(61, 147, 227);\n"
-"border-right-color: rgb(239, 213, 94);\n"
-"border-bottom-color: rgb(239, 213, 94);"))
+                                        "color: rgb(0,0,0);\n"
+                                        "border-width:3px;\n"
+                                        "border-style:groove;\n"
+                                        "border-top-color: rgb(61, 147, 227);\n"
+                                        "border-left-color: rgb(61, 147, 227);\n"
+                                        "border-right-color: rgb(239, 213, 94);\n"
+                                        "border-bottom-color: rgb(239, 213, 94);"))
         self.b2.setObjectName(_fromUtf8("b2"))
         ######## button event2 ##########
         self.b2.clicked.connect(self.callagain)
@@ -108,14 +113,14 @@ class Ui_widget(object):
         font.setWeight(75)
         self.b1.setFont(font)
         self.b1.setStyleSheet(_fromUtf8("background-color: rgb(255,255,255);\n"
-"color: rgb(0,0,0);\n"
-"border-width:3px;\n"
-"border-style:groove;\n"
-"border-top-color: rgb(61, 147, 227);\n"
-"border-left-color: rgb(61, 147, 227);\n"
-"border-right-color: rgb(239, 213, 94);\n"
-"border-bottom-color: rgb(239, 213, 94);\n"
-""))
+                                        "color: rgb(0,0,0);\n"
+                                        "border-width:3px;\n"
+                                        "border-style:groove;\n"
+                                        "border-top-color: rgb(61, 147, 227);\n"
+                                        "border-left-color: rgb(61, 147, 227);\n"
+                                        "border-right-color: rgb(239, 213, 94);\n"
+                                        "border-bottom-color: rgb(239, 213, 94);\n"
+                                        ""))
         self.b1.setObjectName(_fromUtf8("b1"))
         ######## button event1 ##########
         self.b1.clicked.connect(self.call)
@@ -140,43 +145,43 @@ class Ui_widget(object):
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.c1 = QtGui.QLineEdit(self.horizontalLayoutWidget)
         self.c1.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"alternate-background-color: rgb(0, 0, 0);\n"
-"background-color: rgb(0, 0, 0);\n"
-"selection-color: rgb(0, 0, 0);\n"
-"selection-background-color: rgb(0, 0, 0);"))
+                                        "alternate-background-color: rgb(0, 0, 0);\n"
+                                        "background-color: rgb(0, 0, 0);\n"
+                                        "selection-color: rgb(0, 0, 0);\n"
+                                        "selection-background-color: rgb(0, 0, 0);"))
         self.c1.setObjectName(_fromUtf8("c1"))
         self.horizontalLayout_2.addWidget(self.c1)
         self.c2 = QtGui.QLineEdit(self.horizontalLayoutWidget)
         self.c2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"alternate-background-color: rgb(0, 0, 0);\n"
-"background-color: rgb(0, 0, 0);\n"
-"selection-color: rgb(0, 0, 0);\n"
-"selection-background-color: rgb(0, 0, 0);"))
+                                        "alternate-background-color: rgb(0, 0, 0);\n"
+                                        "background-color: rgb(0, 0, 0);\n"
+                                        "selection-color: rgb(0, 0, 0);\n"
+                                        "selection-background-color: rgb(0, 0, 0);"))
         self.c2.setObjectName(_fromUtf8("c2"))
         self.horizontalLayout_2.addWidget(self.c2)
         self.c3 = QtGui.QLineEdit(self.horizontalLayoutWidget)
         self.c3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"alternate-background-color: rgb(0, 0, 0);\n"
-"background-color: rgb(0, 0, 0);\n"
-"selection-color: rgb(0, 0, 0);\n"
-"selection-background-color: rgb(0, 0, 0);"))
+                                        "alternate-background-color: rgb(0, 0, 0);\n"
+                                        "background-color: rgb(0, 0, 0);\n"
+                                        "selection-color: rgb(0, 0, 0);\n"
+                                        "selection-background-color: rgb(0, 0, 0);"))
         self.c3.setObjectName(_fromUtf8("c3"))
         self.horizontalLayout_2.addWidget(self.c3)
         self.c4 = QtGui.QLineEdit(self.horizontalLayoutWidget)
         self.c4.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.c4.setMouseTracking(False)
         self.c4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-"alternate-background-color: rgb(0, 0, 0);\n"
-"background-color: rgb(0, 0, 0);\n"
-"selection-color: rgb(0, 0, 0);\n"
-"selection-background-color: rgb(0, 0, 0);"))
+                                        "alternate-background-color: rgb(0, 0, 0);\n"
+                                        "background-color: rgb(0, 0, 0);\n"
+                                        "selection-color: rgb(0, 0, 0);\n"
+                                        "selection-background-color: rgb(0, 0, 0);"))
         self.c4.setObjectName(_fromUtf8("c4"))
         self.horizontalLayout_2.addWidget(self.c4)
         self.horizontalLayout.addLayout(self.horizontalLayout_2)
         self.label_pic = QtGui.QLabel(widget)
         self.label_pic.setGeometry(QtCore.QRect(60, 10, 81, 71))
         self.label_pic.setStyleSheet(_fromUtf8("background-color: rgb(0, 0, 0);\n"
-"color: rgb(0, 0, 0);"))
+                                               "color: rgb(0, 0, 0);"))
         self.label_pic.setText(_fromUtf8(""))
         self.label_pic.setObjectName(_fromUtf8("label_pic"))
         self.label_pic.setPixmap(QtGui.QPixmap(os.getcwd() + "/py.png"))
@@ -218,7 +223,9 @@ class Ui_widget(object):
     def retranslateUi(self, widget):
         widget.setWindowTitle(_translate("widget", "SciKit-Play", None))
         self.b3.setText(_translate("widget", "Start SciKit-Play", None))
-        self.label.setToolTip(_translate("widget", "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>", None))
+        self.label.setToolTip(_translate("widget",
+                                         "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
+                                         None))
         self.label.setText(_translate("widget", "Enter Coordinates Here :", None))
         self.b2.setText(_translate("widget", "START Your Game!", None))
         self.b1.setText(_translate("widget", "CLICK to get the coordinates", None))
@@ -229,10 +236,10 @@ class Ui_widget(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtGui.QApplication(sys.argv)
     widget = QtGui.QWidget()
     ui = Ui_widget()
     ui.setupUi(widget)
     widget.show()
     sys.exit(app.exec_())
-

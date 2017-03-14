@@ -1,12 +1,14 @@
+import time
+import win32api
+
 import numpy as np
-from utils import *
+import win32con
 from PIL import Image
 from PIL import ImageGrab
-from cell_decoder import CellRecognizer
-import win32api
-import win32con
-import time
+
 import move_maker
+from cell_decoder import CellRecognizer
+from utils import *
 
 
 class Driver:
@@ -100,7 +102,7 @@ class Driver:
         return x, y
 
     # sort of main function for win32 api
-    def do_move(self,  move):
+    def do_move(self, move):
         start = move[0]
         end = move[1]
 
