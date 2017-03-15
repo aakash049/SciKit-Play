@@ -55,14 +55,24 @@ class CellRecognizer:
     # import training data to scikit if it already exists
     # else, train the bot with the sample data
     def train(self):
-        if os.path.isfile(cell_recognizer):
-            self.svc = joblib.load(cell_recognizer)
+        folder = 'cell_dat'
+        pt = os.getcwd() + '/' + folder
+        if os.path.isdir(folder):
+            dat = os.listdir(pt)
+            if not int(len(dat)) == 0:
+                self.svc = joblib.load(pt + '/' + cell_recognizer)
+            else:
+                self.learn_dat(pt)
         else:
-            self.load()
-            np_data = np.array(self.trainingData)
-            np_values = np.array(self.targetValues)
-            self.svc.fit(np_data, np_values)
-            joblib.dump(self.svc, cell_recognizer)
+            os.mkdir(pt)
+            self.learn_dat(pt)
+
+    def learn_dat(self, path):
+        self.load()
+        np_data = np.array(self.trainingData)
+        np_values = np.array(self.targetValues)
+        self.svc.fit(np_data, np_values)
+        joblib.dump(self.svc, path + '/' + cell_recognizer)
 
     def test(self):
         np_train_data = np.array(self.trainingData)

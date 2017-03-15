@@ -36,14 +36,24 @@ class BackRecognizer:
         self._load(pt + '/static', static)
 
     def train(self):
-        if os.path.isfile(back_recognizer):
-            self.svc = joblib.load(back_recognizer)
+        folder = 'back_dat'
+        pt = os.getcwd() + '/' + folder
+        if os.path.isdir(folder):
+            dat = os.listdir(pt)
+            if not int(len(dat)) == 0:
+                self.svc = joblib.load(pt + '/' + back_recognizer)
+            else:
+                self.learn_dat(pt)
         else:
-            self.load()
-            np_data = np.array(self.trainingData)
-            np_values = np.array(self.targetValues)
-            self.svc.fit(np_data, np_values)
-            joblib.dump(self.svc, back_recognizer)
+            os.mkdir(pt)
+            self.learn_dat(pt)
+
+    def learn_dat(self, path):
+        self.load()
+        np_data = np.array(self.trainingData)
+        np_values = np.array(self.targetValues)
+        self.svc.fit(np_data, np_values)
+        joblib.dump(self.svc, path + '/' + back_recognizer)
 
     def test(self):
         np_train_data = np.array(self.trainingData)
