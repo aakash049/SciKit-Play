@@ -79,3 +79,16 @@ def print_board(board):
         for cell in row:
             print board_dict[cell] + ' '
         print
+
+
+### Back Recognizer codes
+curtain = 100
+end = 101
+intro = 102
+loading = 103
+move = 104
+scoreboard = 105
+shop = 106
+static = 107
+
+back_recognizer = 'back.dat'
