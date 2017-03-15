@@ -2,7 +2,9 @@
 
 # CUSTOM FILES
 # We don't need to have the cell.dat file in our VCS, its auto-generated
-cell.dat
+back_dat/
+cell_dat/
+*.db
 
 .idea/
 ### Python template
