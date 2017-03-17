@@ -27,16 +27,17 @@ class Ui_widget(object):
         QtGui.QDesktopServices.openUrl(url)
 
     def callagain(self):
-        options = webdriver.ChromeOptions()
-        options.add_argument("--kiosk")
-        options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])
-        browser = webdriver.Chrome(chrome_options=options)
-        browser.get("http://www.royalgames.com/games/puzzle-games/candy-crush/?language=en_US&action=play")
-        browser.execute_script("document.body.style.zoom='111%'")
-        # browser.set_window_size(500, 500)
-        # browser.maximize_window()
-        # webbrowser.open("http://www.royalgames.com/games/puzzle-games/candy-crush/?language=en_US&action=play")
+        import webbrowser
+        import time
+        webbrowser.open("https://royalgames.com/games/puzzle-games/candy-crush/?language=en_US&action=play")
+        time.sleep(0.9)
+        self.web()
 
+    def web(self):
+        import pyautogui
+        pyautogui.press('f11')
+
+    # You need to install pyautogui module by the command->"pip install pyautogui" on command prompt
     def callmain(self):
         v1 = int(self.c1.text())
         v2 = int(self.c2.text())
