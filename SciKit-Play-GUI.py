@@ -1,7 +1,5 @@
 import os
-
 from PyQt4 import QtCore, QtGui
-from selenium import webdriver
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -34,10 +32,9 @@ class Ui_widget(object):
         self.web()
 
     def web(self):
-        import pyautogui
-        pyautogui.press('f11')
+        import key
+        key.hook()
 
-    # You need to install pyautogui module by the command->"pip install pyautogui" on command prompt
     def callmain(self):
         v1 = int(self.c1.text())
         v2 = int(self.c2.text())
