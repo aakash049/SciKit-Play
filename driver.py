@@ -1,6 +1,6 @@
 import time
 import win32api
-
+import ctypes
 import numpy as np
 import win32con
 from PIL import Image
