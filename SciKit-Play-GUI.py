@@ -21,7 +21,7 @@ except AttributeError:
 class Ui_widget(object):
     #############################################################################################################################
     def call(self):
-        url = QtCore.QUrl('C:\Users\Aadit bhojgi\Desktop\Cursor Position')
+        url = QtCore.QUrl('utilities\CursorPosition.exe')
         QtGui.QDesktopServices.openUrl(url)
 
     def callagain(self):
