@@ -195,6 +195,11 @@ class MoveMaker:
                         max_score = score
                         chosen_move = move
 
+        if(chosen_move[0][0] == chosen_move[1][0]):
+            print 1
+        else:
+            print 0
+
         return max_score, chosen_move
 
 # DONE: Complete this class with the evaluation functions as discussed.
