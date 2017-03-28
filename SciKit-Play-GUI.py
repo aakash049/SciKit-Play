@@ -46,7 +46,11 @@ class Ui_widget(object):
         driver_obj = driver.Driver(board_coords)
         driver_obj.play()
 
-    #############################################################################################################################
+    def statistic(self):
+       import stat_1
+       stat_1.calstat()
+
+        #############################################################################################################################
     def setupUi(self, widget):
         widget.setObjectName(_fromUtf8("widget"))
         widget.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -66,32 +70,32 @@ class Ui_widget(object):
         widget.setAutoFillBackground(False)
         widget.setStyleSheet(_fromUtf8("background-color: rgb(0, 0, 0);"))
         self.b3 = QtGui.QPushButton(widget)
-        self.b3.setGeometry(QtCore.QRect(20, 210, 551, 51))
+        self.b3.setGeometry(QtCore.QRect(330, 220, 251, 41))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("MS Shell Dlg 2"))
-        font.setPointSize(20)
+        font.setPointSize(18)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.b3.setFont(font)
         self.b3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-                                        "font: 20pt \"MS Shell Dlg 2\";\n"
+                                        "font: 18pt \"MS Shell Dlg 2\";\n"
                                         "background-color: rgb(68, 163, 252);"))
         self.b3.setObjectName(_fromUtf8("b3"))
         ######## button event3 ##########
         self.b3.clicked.connect(self.callmain)
         #################################
         self.b2 = QtGui.QPushButton(widget)
-        self.b2.setGeometry(QtCore.QRect(20, 100, 271, 31))
+        self.b2.setGeometry(QtCore.QRect(20, 90, 261, 41))
         font = QtGui.QFont()
-        font.setFamily(_fromUtf8("Lato Black"))
+        font.setFamily(_fromUtf8("Lato Heavy"))
         font.setPointSize(12)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(10)
         self.b2.setFont(font)
         self.b2.setStyleSheet(_fromUtf8("background-color: rgb(255,255,255);\n"
-                                        "font: 87 12pt \"Lato Black\";\n"
+                                        "font: 87 12pt \"Lato Heavy\";\n"
                                         "alternate-background-color:rgb(0,0,0,0);\n"
                                         "color: rgb(0,0,0);\n"
                                         "border-width:5px;\n"
@@ -106,16 +110,16 @@ class Ui_widget(object):
         self.b2.clicked.connect(self.callagain)
         #################################
         self.b1 = QtGui.QPushButton(widget)
-        self.b1.setGeometry(QtCore.QRect(340, 100, 231, 31))
+        self.b1.setGeometry(QtCore.QRect(330, 90, 241, 41))
         font = QtGui.QFont()
-        font.setFamily(_fromUtf8("Lato Black"))
+        font.setFamily(_fromUtf8("Lato Heavy"))
         font.setPointSize(12)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(10)
         self.b1.setFont(font)
         self.b1.setStyleSheet(_fromUtf8("background-color: rgb(255,255,255);\n"
-                                        "font: 87 12pt \"Lato Black\";\n"
+                                        "font: 87 12pt \"Lato Heavy\";\n"
                                         "color: rgb(0,0,0);\n"
                                         "border-width:5px;\n"
                                         "border-style:groove;\n"
@@ -169,7 +173,7 @@ class Ui_widget(object):
         self.label1_3.setStyleSheet(_fromUtf8("color: rgb(239, 213, 94);"))
         self.label1_3.setObjectName(_fromUtf8("label1_3"))
         self.horizontalLayoutWidget_2 = QtGui.QWidget(widget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 140, 301, 61))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 150, 301, 61))
         self.horizontalLayoutWidget_2.setObjectName(_fromUtf8("horizontalLayoutWidget_2"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
@@ -196,19 +200,19 @@ class Ui_widget(object):
         self.comboBox.addItem(_fromUtf8(""))
         self.horizontalLayout_2.addWidget(self.comboBox)
         self.v4 = QtGui.QLineEdit(widget)
-        self.v4.setGeometry(QtCore.QRect(520, 170, 51, 22))
+        self.v4.setGeometry(QtCore.QRect(520, 180, 51, 22))
         self.v4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v4.setObjectName(_fromUtf8("v4"))
         self.v1 = QtGui.QLineEdit(widget)
-        self.v1.setGeometry(QtCore.QRect(340, 170, 51, 22))
+        self.v1.setGeometry(QtCore.QRect(340, 180, 51, 22))
         self.v1.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v1.setObjectName(_fromUtf8("v1"))
         self.v2 = QtGui.QLineEdit(widget)
-        self.v2.setGeometry(QtCore.QRect(400, 170, 51, 22))
+        self.v2.setGeometry(QtCore.QRect(400, 180, 51, 22))
         self.v2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v2.setObjectName(_fromUtf8("v2"))
         self.label_4 = QtGui.QLabel(widget)
-        self.label_4.setGeometry(QtCore.QRect(340, 140, 209, 21))
+        self.label_4.setGeometry(QtCore.QRect(340, 150, 209, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -218,16 +222,40 @@ class Ui_widget(object):
                                              "border-color: rgb(0, 0, 234);"))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.v3 = QtGui.QLineEdit(widget)
-        self.v3.setGeometry(QtCore.QRect(460, 170, 51, 22))
+        self.v3.setGeometry(QtCore.QRect(460, 180, 51, 22))
         self.v3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v3.setObjectName(_fromUtf8("v3"))
         self.line = QtGui.QFrame(widget)
-        self.line.setGeometry(QtCore.QRect(320, 140, 3, 59))
+        self.line.setGeometry(QtCore.QRect(310, 150, 3, 59))
         self.line.setStyleSheet(_fromUtf8("color: rgb(186, 186, 186);\n"
                                           "background-color: rgb(186, 186, 186);"))
         self.line.setFrameShape(QtGui.QFrame.VLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
+        self.b2_2 = QtGui.QPushButton(widget)
+        self.b2_2.setGeometry(QtCore.QRect(20, 220, 261, 41))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Lato heavy"))
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(10)
+        self.b2_2.setFont(font)
+        self.b2_2.setStyleSheet(_fromUtf8("background-color: rgb(255,255,255);\n"
+                                          "font: 87 12pt \"Lato heavy\";\n"
+                                          "alternate-background-color:rgb(0,0,0,0);\n"
+                                          "color: rgb(0,0,0);\n"
+                                          "border-width:5px;\n"
+                                          "border-style:groove;\n"
+                                          "border-top-color: rgb(61, 147, 227);\n"
+                                          "border-left-color: rgb(61, 147, 227);\n"
+                                          "border-right-color: rgb(239, 213, 94);\n"
+                                          "border-bottom-color: rgb(239, 213, 94);\n"
+                                          ""))
+        self.b2_2.setObjectName(_fromUtf8("b2_2"))
+        ##############################
+        self.b2_2.clicked.connect(self.statistic)
+        #############################
         self.b3.raise_()
         self.b1.raise_()
         self.b2.raise_()
@@ -242,6 +270,7 @@ class Ui_widget(object):
         self.label_4.raise_()
         self.v3.raise_()
         self.line.raise_()
+        self.b2_2.raise_()
 
         self.retranslateUi(widget)
         QtCore.QMetaObject.connectSlotsByName(widget)
@@ -265,6 +294,7 @@ class Ui_widget(object):
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
         self.label_4.setText(_translate("widget", "Enter Coordinates Here :", None))
+        self.b2_2.setText(_translate("widget", "Show Statistics", None))
 
 
 if __name__ == "__main__":
