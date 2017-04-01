@@ -1,4 +1,3 @@
-
 def calstat():
         import matplotlib
 
@@ -23,3 +22,4 @@ def calstat():
         ax1.axis('equal')  # Equal aspect ratio ensures that pie chart is drawn as a circle.
         plt.show()
 
+calstat()
