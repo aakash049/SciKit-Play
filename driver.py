@@ -8,6 +8,7 @@ from PIL import ImageGrab
 
 import move_maker
 from cell_decoder import CellRecognizer
+from back_decoder import BackRecognizer
 from utils import *
 
 
@@ -21,22 +22,34 @@ class Driver:
         self.cell_recognizer = CellRecognizer()
         self.cell_recognizer.train()
 
-        self.background_img = Image.open('background.bmp')
-        self.background_img = self.background_img.resize(
-            (self.background_img.size[0] / 4, self.background_img.size[1] / 4), Image.NEAREST)
+        self.back_recognizer = BackRecognizer()
+        self.back_recognizer.train()
+
         self.mover = move_maker.MoveMaker()
-        self.img_end_game = Image.open('end_screen.bmp')
-        self.img_end_game = self.img_end_game.resize((self.img_end_game.size[0] / 4, self.img_end_game.size[1] / 4),
-                                                     Image.NEAREST)
+        # self.background_img = Image.open('background.bmp')
+        # self.background_img = self.background_img.resize(
+        #     (self.background_img.size[0] / 4, self.background_img.size[1] / 4), Image.NEAREST)
+        # self.img_end_game = Image.open('end_screen.bmp')
+        # self.img_end_game = self.img_end_game.resize((self.img_end_game.size[0] / 4, self.img_end_game.size[1] / 4), Image.NEAREST)
 
     def play(self):
         while True:
             if not self.board_is_moving():
                 board_img = self.grab_board()
-                if self.compare_images(board_img, self.img_end_game, 10) < 3000:
+                board_state = self.back_recognizer.predict(board_img)
+                if board_state == curtain:
+                    continue
+                elif board_state == intro:
+                    continue
+                elif board_state == end:
                     break
-                score, move = self.mover.solve_board(self.game_board)
-                self.do_move(move)
+                elif board_state == scoreboard:
+                    break
+                elif board_state == loading:
+                    continue
+                else:
+                    score, move = self.mover.solve_board(self.game_board)
+                    self.do_move(move)
             time.sleep(0.4)  # wait for the cells to finish moving
 
     # It takes the screenshot of the board and then crops each cell using a nested loop

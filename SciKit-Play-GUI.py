@@ -37,10 +37,22 @@ class Ui_widget(object):
         key.hook()
 
     def callmain(self):
-        c1 = int(self.v1.text())
-        c2 = int(self.v2.text())
-        c3 = int(self.v3.text())
-        c4 = int(self.v4.text())
+        choice = self.comboBox.currentIndex()
+        if choice == 1:
+            c1 = int(688)
+            c2 = int(60)
+            c3 = int(1325)
+            c4 = int(622)
+        elif choice == 2:
+            c1 = int(0)
+            c2 = int(0)
+            c3 = int(0)
+            c4 = int(0)
+        else:
+            c1 = int(self.v1.text())
+            c2 = int(self.v2.text())
+            c3 = int(self.v3.text())
+            c4 = int(self.v4.text())
         board_coords = (c1, c2, c3, c4)
         import driver
         driver_obj = driver.Driver(board_coords)
