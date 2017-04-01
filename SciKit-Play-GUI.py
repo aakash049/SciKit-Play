@@ -47,8 +47,20 @@ class Ui_widget(object):
         driver_obj.play()
 
     def statistic(self):
-       import stat_1
-       stat_1.calstat()
+        import stat_1
+        stat_1.calstat()
+
+    def combo_chosen_1(self):
+        board_coords = (1, 1, 1, 1)
+        import driver
+        driver_obj = driver.Driver(board_coords)
+        driver_obj.play()
+
+    def combo_chosen_2(self):
+        board_coords = (1, 1, 1, 1)
+        import driver
+        driver_obj = driver.Driver(board_coords)
+        driver_obj.play()
 
         #############################################################################################################################
     def setupUi(self, widget):
@@ -70,7 +82,7 @@ class Ui_widget(object):
         widget.setAutoFillBackground(False)
         widget.setStyleSheet(_fromUtf8("background-color: rgb(0, 0, 0);"))
         self.b3 = QtGui.QPushButton(widget)
-        self.b3.setGeometry(QtCore.QRect(330, 220, 251, 41))
+        self.b3.setGeometry(QtCore.QRect(330, 220, 241, 41))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("MS Shell Dlg 2"))
         font.setPointSize(18)
@@ -86,7 +98,7 @@ class Ui_widget(object):
         self.b3.clicked.connect(self.callmain)
         #################################
         self.b2 = QtGui.QPushButton(widget)
-        self.b2.setGeometry(QtCore.QRect(20, 90, 261, 41))
+        self.b2.setGeometry(QtCore.QRect(20, 90, 251, 41))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Lato Heavy"))
         font.setPointSize(12)
@@ -149,7 +161,9 @@ class Ui_widget(object):
                                                "color: rgb(0, 0, 0);"))
         self.label_pic.setText(_fromUtf8(""))
         self.label_pic.setObjectName(_fromUtf8("label_pic"))
+        #################pic#############
         self.label_pic.setPixmap(QtGui.QPixmap(os.getcwd() + "/py.png"))
+        #################################
         self.label1_2 = QtGui.QLabel(widget)
         self.label1_2.setGeometry(QtCore.QRect(360, 10, 51, 72))
         font = QtGui.QFont()
@@ -173,7 +187,7 @@ class Ui_widget(object):
         self.label1_3.setStyleSheet(_fromUtf8("color: rgb(239, 213, 94);"))
         self.label1_3.setObjectName(_fromUtf8("label1_3"))
         self.horizontalLayoutWidget_2 = QtGui.QWidget(widget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 150, 301, 61))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 140, 271, 67))
         self.horizontalLayoutWidget_2.setObjectName(_fromUtf8("horizontalLayoutWidget_2"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
@@ -190,19 +204,30 @@ class Ui_widget(object):
                                              "font: 87 12pt \"Lato Black\";"))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.horizontalLayout_2.addWidget(self.label_3)
-        self.comboBox = QtGui.QComboBox(self.horizontalLayoutWidget_2)
-        self.comboBox.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-                                              "font: 81 12pt \"Lato Heavy\";\n"
-                                              ""))
-        self.comboBox.setObjectName(_fromUtf8("comboBox"))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.comboBox.addItem(_fromUtf8(""))
-        self.horizontalLayout_2.addWidget(self.comboBox)
-        self.v4 = QtGui.QLineEdit(widget)
-        self.v4.setGeometry(QtCore.QRect(520, 180, 51, 22))
-        self.v4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
-        self.v4.setObjectName(_fromUtf8("v4"))
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.checkBox = QtGui.QCheckBox(self.horizontalLayoutWidget_2)
+        self.checkBox.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+                                              "font: 87 12pt \"Lato Black\";"))
+        self.checkBox.setCheckable(False)
+        self.checkBox.setTristate(True)
+        self.checkBox.setObjectName(_fromUtf8("checkBox"))
+        ##############################
+        self.checkBox.clicked.connect(self.combo_chosen_1)
+        ###############################
+        self.verticalLayout.addWidget(self.checkBox)
+        self.checkBox_2 = QtGui.QCheckBox(self.horizontalLayoutWidget_2)
+        self.checkBox_2.setEnabled(True)
+        self.checkBox_2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+                                                "font: 87 12pt \"Lato Black\";"))
+        self.checkBox_2.setCheckable(False)
+        self.checkBox_2.setTristate(True)
+        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
+        ##############################
+        self.checkBox_2.clicked.connect(self.combo_chosen_2)
+        ###############################
+        self.verticalLayout.addWidget(self.checkBox_2)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
         self.v1 = QtGui.QLineEdit(widget)
         self.v1.setGeometry(QtCore.QRect(340, 180, 51, 22))
         self.v1.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
@@ -225,8 +250,12 @@ class Ui_widget(object):
         self.v3.setGeometry(QtCore.QRect(460, 180, 51, 22))
         self.v3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v3.setObjectName(_fromUtf8("v3"))
+        self.v4 = QtGui.QLineEdit(widget)
+        self.v4.setGeometry(QtCore.QRect(520, 180, 51, 22))
+        self.v4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
+        self.v4.setObjectName(_fromUtf8("v4"))
         self.line = QtGui.QFrame(widget)
-        self.line.setGeometry(QtCore.QRect(310, 150, 3, 59))
+        self.line.setGeometry(QtCore.QRect(300, 150, 3, 59))
         self.line.setStyleSheet(_fromUtf8("color: rgb(186, 186, 186);\n"
                                           "background-color: rgb(186, 186, 186);"))
         self.line.setFrameShape(QtGui.QFrame.VLine)
@@ -287,9 +316,8 @@ class Ui_widget(object):
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
         self.label_3.setText(_translate("widget", "Resolution:", None))
-        self.comboBox.setItemText(0, _translate("widget", "Set Resolution", None))
-        self.comboBox.setItemText(1, _translate("widget", "1920 x 1080", None))
-        self.comboBox.setItemText(2, _translate("widget", "1280 x 720", None))
+        self.checkBox.setText(_translate("widget", "1280 x 720", None))
+        self.checkBox_2.setText(_translate("widget", "1920 x 1080", None))
         self.label_4.setToolTip(_translate("widget",
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
