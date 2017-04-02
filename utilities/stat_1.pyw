@@ -1,4 +1,3 @@
-
 def calstat():
         import matplotlib
 
@@ -13,7 +12,7 @@ def calstat():
                     hori += 1
 
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-        labels = 'Vertical Moves', 'Horizontal Moves'
+        labels = 'Verical Moves', 'Horizontal Moves'
         sizes = [vert, hori]
         explode = (0, 0.1)
 
@@ -23,3 +22,4 @@ def calstat():
         ax1.axis('equal')  # Equal aspect ratio ensures that pie chart is drawn as a circle.
         plt.show()
 
+calstat()

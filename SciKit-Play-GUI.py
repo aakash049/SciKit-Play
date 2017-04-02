@@ -59,8 +59,8 @@ class Ui_widget(object):
         driver_obj.play()
 
     def statistic(self):
-        import stat_1
-        stat_1.calstat()
+        url_1 = QtCore.QUrl('utilities\stat_1.pyw')
+        QtGui.QDesktopServices.openUrl(url_1)
 
     def combo_chosen_1(self):
         board_coords = (1, 1, 1, 1)
@@ -74,7 +74,11 @@ class Ui_widget(object):
         driver_obj = driver.Driver(board_coords)
         driver_obj.play()
 
-        #############################################################################################################################
+    def combo_chosen_3(self):
+        import win32api
+        win32api.MessageBox(0, 'Please Get you coordinates and Enter them on the right side!', 'Message')
+
+    #############################################################################################################################
     def setupUi(self, widget):
         widget.setObjectName(_fromUtf8("widget"))
         widget.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -199,7 +203,7 @@ class Ui_widget(object):
         self.label1_3.setStyleSheet(_fromUtf8("color: rgb(239, 213, 94);"))
         self.label1_3.setObjectName(_fromUtf8("label1_3"))
         self.horizontalLayoutWidget_2 = QtGui.QWidget(widget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 140, 271, 67))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 130, 271, 81))
         self.horizontalLayoutWidget_2.setObjectName(_fromUtf8("horizontalLayoutWidget_2"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
@@ -218,27 +222,35 @@ class Ui_widget(object):
         self.horizontalLayout_2.addWidget(self.label_3)
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.checkBox = QtGui.QCheckBox(self.horizontalLayoutWidget_2)
-        self.checkBox.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-                                              "font: 87 12pt \"Lato Black\";"))
-        self.checkBox.setCheckable(False)
-        self.checkBox.setTristate(True)
-        self.checkBox.setObjectName(_fromUtf8("checkBox"))
+        self.radioButton = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
+        self.radioButton.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+                                                 "font: 87 12pt \"Lato Black\";color: rgb(255, 255, 255);\n"
+                                                 "font: 87 12pt \"Lato Black\";"))
+        self.radioButton.setCheckable(True)
+        self.radioButton.setChecked(False)
+        self.radioButton.setObjectName(_fromUtf8("radioButton"))
         ##############################
-        self.checkBox.clicked.connect(self.combo_chosen_1)
+        self.radioButton.clicked.connect(self.combo_chosen_1)
         ###############################
-        self.verticalLayout.addWidget(self.checkBox)
-        self.checkBox_2 = QtGui.QCheckBox(self.horizontalLayoutWidget_2)
-        self.checkBox_2.setEnabled(True)
-        self.checkBox_2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
-                                                "font: 87 12pt \"Lato Black\";"))
-        self.checkBox_2.setCheckable(False)
-        self.checkBox_2.setTristate(True)
-        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
+        self.verticalLayout.addWidget(self.radioButton)
+        self.radioButton_2 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
+        self.radioButton_2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+                                                   "font: 87 12pt \"Lato Black\";color: rgb(255, 255, 255);\n"
+                                                   "font: 87 12pt \"Lato Black\";"))
+        self.radioButton_2.setObjectName(_fromUtf8("radioButton_2"))
         ##############################
-        self.checkBox_2.clicked.connect(self.combo_chosen_2)
+        self.radioButton_2.clicked.connect(self.combo_chosen_2)
         ###############################
-        self.verticalLayout.addWidget(self.checkBox_2)
+        self.verticalLayout.addWidget(self.radioButton_2)
+        self.radioButton_3 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
+        self.radioButton_3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
+                                                   "font: 87 12pt \"Lato Black\";color: rgb(255, 255, 255);\n"
+                                                   "font: 87 12pt \"Lato Black\";"))
+        self.radioButton_3.setObjectName(_fromUtf8("radioButton_3"))
+        ##############################
+        self.radioButton_3.clicked.connect(self.combo_chosen_3)
+        ###############################
+        self.verticalLayout.addWidget(self.radioButton_3)
         self.horizontalLayout_2.addLayout(self.verticalLayout)
         self.v1 = QtGui.QLineEdit(widget)
         self.v1.setGeometry(QtCore.QRect(340, 180, 51, 22))
@@ -248,6 +260,15 @@ class Ui_widget(object):
         self.v2.setGeometry(QtCore.QRect(400, 180, 51, 22))
         self.v2.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.v2.setObjectName(_fromUtf8("v2"))
+        self.v3 = QtGui.QLineEdit(widget)
+        self.v3.setGeometry(QtCore.QRect(460, 180, 51, 22))
+        self.v3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
+        self.v3.setObjectName(_fromUtf8("v3"))
+        self.v4 = QtGui.QLineEdit(widget)
+        self.v4.setGeometry(QtCore.QRect(520, 180, 51, 22))
+        self.v4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
+        self.v4.setObjectName(_fromUtf8("v4"))
+
         self.label_4 = QtGui.QLabel(widget)
         self.label_4.setGeometry(QtCore.QRect(340, 150, 209, 21))
         font = QtGui.QFont()
@@ -258,14 +279,6 @@ class Ui_widget(object):
         self.label_4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);\n"
                                              "border-color: rgb(0, 0, 234);"))
         self.label_4.setObjectName(_fromUtf8("label_4"))
-        self.v3 = QtGui.QLineEdit(widget)
-        self.v3.setGeometry(QtCore.QRect(460, 180, 51, 22))
-        self.v3.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
-        self.v3.setObjectName(_fromUtf8("v3"))
-        self.v4 = QtGui.QLineEdit(widget)
-        self.v4.setGeometry(QtCore.QRect(520, 180, 51, 22))
-        self.v4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
-        self.v4.setObjectName(_fromUtf8("v4"))
         self.line = QtGui.QFrame(widget)
         self.line.setGeometry(QtCore.QRect(300, 150, 3, 59))
         self.line.setStyleSheet(_fromUtf8("color: rgb(186, 186, 186);\n"
@@ -274,7 +287,7 @@ class Ui_widget(object):
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.b2_2 = QtGui.QPushButton(widget)
-        self.b2_2.setGeometry(QtCore.QRect(20, 220, 261, 41))
+        self.b2_2.setGeometry(QtCore.QRect(20, 220, 251, 41))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Lato heavy"))
         font.setPointSize(12)
@@ -328,8 +341,9 @@ class Ui_widget(object):
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
         self.label_3.setText(_translate("widget", "Resolution:", None))
-        self.checkBox.setText(_translate("widget", "1366 x 768", None))
-        self.checkBox_2.setText(_translate("widget", "1920 x 1080", None))
+        self.radioButton.setText(_translate("widget", "1920 x 1080", None))
+        self.radioButton_2.setText(_translate("widget", "1366 x 768", None))
+        self.radioButton_3.setText(_translate("widget", "Customized", None))
         self.label_4.setToolTip(_translate("widget",
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
