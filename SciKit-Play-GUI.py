@@ -64,7 +64,7 @@ class Ui_widget(object):
 
     def combo_chosen_3(self):
         import win32api
-        win32api.MessageBox(0, 'Please Get you coordinates and Enter them on the right side!', 'Message')
+        win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message')
 
     #############################################################################################################################
     def setupUi(self, widget):
