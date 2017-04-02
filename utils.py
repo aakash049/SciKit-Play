@@ -89,6 +89,5 @@ loading = 103
 move = 104
 scoreboard = 105
 shop = 106
-static = 107
 
 back_recognizer = 'back.dat'

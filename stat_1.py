@@ -13,7 +13,7 @@ def calstat():
                     hori += 1
 
         # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-        labels = 'Verical Moves', 'Horizontal Moves'
+        labels = 'Vertical Moves', 'Horizontal Moves'
         sizes = [vert, hori]
         explode = (0, 0.1)
 

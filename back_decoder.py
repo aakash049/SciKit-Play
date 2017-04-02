@@ -33,7 +33,6 @@ class BackRecognizer:
         self._load(pt + '/move', move)
         self._load(pt + '/scoreboard', scoreboard)
         self._load(pt + '/shop', shop)
-        self._load(pt + '/static', static)
 
     def train(self):
         folder = 'back_dat'

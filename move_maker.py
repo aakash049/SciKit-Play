@@ -182,7 +182,7 @@ class MoveMaker:
             return score_end, [end, start], end_board
 
     # main function to start solving the board
-    def solve_board(self, board):
+    def solve_board(self, board, moves):
         self.game_board = board
         max_score = 0
         chosen_move = []
@@ -192,13 +192,17 @@ class MoveMaker:
                 for d in possible_directions:
                     score, move, b = self.check_direction((i, j), d)
                     if score >= max_score:
-                        max_score = score
-                        chosen_move = move
+                        if len(moves) is 0:
+                            max_score = score
+                            chosen_move = move
+                        elif moves.count(move) is 0:
+                            max_score = score
+                            chosen_move = move
 
-        if(chosen_move[0][0] == chosen_move[1][0]):
-            print 1
-        else:
-            print 0
+        # if(chosen_move[0][0] == chosen_move[1][0]):
+        #     print 1
+        # else:
+        #     print 0
 
         return max_score, chosen_move
 
