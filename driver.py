@@ -26,6 +26,8 @@ class Driver:
         self.back_recognizer.train()
 
         self.mover = move_maker.MoveMaker()
+
+        self.prev_board = None
         # self.background_img = Image.open('background.bmp')
         # self.background_img = self.background_img.resize(
         #     (self.background_img.size[0] / 4, self.background_img.size[1] / 4), Image.NEAREST)
@@ -33,9 +35,10 @@ class Driver:
         # self.img_end_game = self.img_end_game.resize((self.img_end_game.size[0] / 4, self.img_end_game.size[1] / 4), Image.NEAREST)
 
     def play(self):
+        moves = []
         while True:
             if not self.board_is_moving():
-                board_img = self.grab_board()
+                board_img = self.get_board()
                 board_state = self.back_recognizer.predict(board_img)
                 if board_state == curtain:
                     continue
@@ -48,8 +51,14 @@ class Driver:
                 elif board_state == loading:
                     continue
                 else:
-                    score, move = self.mover.solve_board(self.game_board)
+                    score, move = self.mover.solve_board(self.game_board, moves)
+                    if self.checkDiff():
+                        if moves.count(move) != 0:
+                            continue
+                    else:
+                        moves = []
                     self.do_move(move)
+                    moves.append(move)
             time.sleep(0.4)  # wait for the cells to finish moving
 
     # It takes the screenshot of the board and then crops each cell using a nested loop
@@ -67,6 +76,24 @@ class Driver:
                 self.game_board[y][x] = self.cell_recognizer.predict(cell)
         img = img.resize((img.size[0] / 4, img.size[1] / 4), Image.NEAREST)
         return img
+
+    def get_board(self):
+        img = ImageGrab.grab()
+        img = img.crop(self.board_box)
+        img.resize((img.size[0] / 4, img.size[1] / 4), Image.NEAREST)
+        return img
+
+
+    def checkDiff(self):
+        if self.prev_board is None:
+            return True
+        currentBoard = self.get_board()
+        if(self.compare_images(currentBoard, self.prev_board, 30) < 30):
+            self.prev_board = currentBoard
+            return False
+        else:
+            self.prev_board = currentBoard
+            return True
 
     # checks if the board is in moving state (It is in moving state after the candies have been exploded)
     def board_is_moving(self):
@@ -89,18 +116,23 @@ class Driver:
             diff += abs(p1[i] - p2[i])
         return diff < threshold
 
+    # For Comparing two images
     def compare_images(self, current, reference, threshold):
-        current_data = np.array(current.getdata())
-        ref_data = np.array(reference.getdata())
 
-        diff_pixels = 0
-        total_size = current.size[0] * current.size[1]
-        for i in range(0, total_size - 3, 3):
-            if not self.are_pixels_equal(current_data[i], ref_data[i], threshold):
-                diff_pixels += 1
+        if(reference == None):
+            return 0
+        else:
+            current_data = np.array(current.getdata())
+            ref_data = np.array(reference.getdata())
 
-        print diff_pixels
-        return diff_pixels
+            diff_pixels = 0
+            total_size = current.size[0] * current.size[1]
+            for i in range(0, total_size - 3, 3):
+                if not self.are_pixels_equal(current_data[i], ref_data[i], threshold):
+                    diff_pixels += 1
+
+            print diff_pixels
+            return diff_pixels
 
     #  for imitating the clicks on the board
     def win32_click(self, x, y):
