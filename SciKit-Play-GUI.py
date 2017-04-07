@@ -1,6 +1,12 @@
 import os
 from PyQt4 import QtCore, QtGui
 
+c1 = 0
+c2 = 0
+c3 = 0
+c4 = 0
+counter = 0
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -20,7 +26,6 @@ except AttributeError:
 
 class Ui_widget(object):
     #############################################################################################################################
-
     def call(self):
         url = QtCore.QUrl('utilities\CursorPosition.exe')
         QtGui.QDesktopServices.openUrl(url)
@@ -37,17 +42,11 @@ class Ui_widget(object):
         key.hook()
 
     def callmain(self):
-        if self.radioButton.isChecked():
-            c1 = int(688)
-            c2 = int(60)
-            c3 = int(1325)
-            c4 = int(622)
-        elif self.radioButton_2.isChecked():
-            c1 = int(0)
-            c2 = int(0)
-            c3 = int(0)
-            c4 = int(0)
-        else:
+        if counter==1:
+            global c1
+            global c2
+            global c3
+            global c4
             c1 = int(self.v1.text())
             c2 = int(self.v2.text())
             c3 = int(self.v3.text())
@@ -57,27 +56,42 @@ class Ui_widget(object):
         driver_obj = driver.Driver(board_coords)
         driver_obj.play()
 
+    def combo_chosen_1(self):
+        global counter
+        counter = 0
+        global c1
+        global c2
+        global c3
+        global c4 
+        c1 = int(688)
+        c2 = int(60)
+        c3 = int(1325)
+        c4 = int(622)
+
+    def combo_chosen_2(self):
+        global counter
+        counter = 0
+        global c1
+        global c2
+        global c3
+        global c4 
+        c1 = int(494)
+        c2 = int(154)
+        c3 = int(1135)
+        c4 = int(717)
+
     def statistic(self):
         url_1 = QtCore.QUrl('utilities\stat_1.pyw')
         QtGui.QDesktopServices.openUrl(url_1)
 
-    def combo_chosen_1(self):
-        board_coords = (1, 1, 1, 1)
-        import driver
-        driver_obj = driver.Driver(board_coords)
-        driver_obj.play()
-
-    def combo_chosen_2(self):
-        board_coords = (1, 1, 1, 1)
-        import driver
-        driver_obj = driver.Driver(board_coords)
-        driver_obj.play()
-
     def combo_chosen_3(self):
         import win32api
         win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message')
+        global counter
+        counter = 1
 
     #############################################################################################################################
+
     def setupUi(self, widget):
         widget.setObjectName(_fromUtf8("widget"))
         widget.setWindowModality(QtCore.Qt.ApplicationModal)
@@ -229,7 +243,7 @@ class Ui_widget(object):
         self.radioButton.setChecked(False)
         self.radioButton.setObjectName(_fromUtf8("radioButton"))
         ##############################
-        self.radioButton.clicked.connect(self.combo_chosen_1)
+        self.radioButton.clicked.connect(self.combo_chosen_2)
         ###############################
         self.verticalLayout.addWidget(self.radioButton)
         self.radioButton_2 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
@@ -238,7 +252,7 @@ class Ui_widget(object):
                                                    "font: 87 12pt \"Lato Black\";"))
         self.radioButton_2.setObjectName(_fromUtf8("radioButton_2"))
         ##############################
-        self.radioButton_2.clicked.connect(self.combo_chosen_2)
+        self.radioButton_2.clicked.connect(self.combo_chosen_1)
         ###############################
         self.verticalLayout.addWidget(self.radioButton_2)
         self.radioButton_3 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
@@ -328,6 +342,7 @@ class Ui_widget(object):
         self.retranslateUi(widget)
         QtCore.QMetaObject.connectSlotsByName(widget)
 
+
     def retranslateUi(self, widget):
         widget.setWindowTitle(_translate("widget", "SciKit-Play", None))
         self.b3.setText(_translate("widget", "Start SciKit-Play", None))
@@ -349,10 +364,8 @@ class Ui_widget(object):
         self.label_4.setText(_translate("widget", "Enter Coordinates Here :", None))
         self.b2_2.setText(_translate("widget", "Show Statistics", None))
 
-
 if __name__ == "__main__":
     import sys
-
     app = QtGui.QApplication(sys.argv)
     widget = QtGui.QWidget()
     ui = Ui_widget()
