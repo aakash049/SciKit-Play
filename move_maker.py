@@ -192,12 +192,9 @@ class MoveMaker:
                 for d in possible_directions:
                     score, move, b = self.check_direction((i, j), d)
                     if score >= max_score:
-                        if len(moves) is 0:
-                            max_score = score
-                            chosen_move = move
-                        elif moves.count(move) is 0:
-                            max_score = score
-                            chosen_move = move
+                    #     if moves.count(move) is 0 and moves.count([move[1], move[0]]) is 0:
+                        max_score = score
+                        chosen_move = move
 
         # if(chosen_move[0][0] == chosen_move[1][0]):
         #     print 1
