@@ -86,7 +86,7 @@ class Ui_widget(object):
 
     def combo_chosen_3(self):
         import win32api
-        win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message')
+        win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message',QtCore.Qt.WindowStaysOnTopHint)
         global counter
         counter = 1
 
@@ -370,5 +370,6 @@ if __name__ == "__main__":
     widget = QtGui.QWidget()
     ui = Ui_widget()
     ui.setupUi(widget)
+    widget.setWindowFlags(widget.windowFlags() | QtCore.Qt.WindowStaysOnTopHint)
     widget.show()
     sys.exit(app.exec_())
