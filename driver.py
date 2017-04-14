@@ -31,7 +31,7 @@ class Driver:
 
     def play(self):
         moves = []
-        mover = [[0,0], [0,0]]
+        mover = [(0,0), (0,0)]
         board_img = None
         while True:
             if not self.board_is_moving():
