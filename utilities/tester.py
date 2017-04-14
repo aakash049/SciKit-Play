@@ -17,7 +17,6 @@ board_dic = {
     move: 'move\n',
     scoreboard: 'scoreboard\n',
     shop: 'shop\n',
-    static: 'static\n'
 }
 
 i = 1

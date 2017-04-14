@@ -19,6 +19,8 @@ class BackRecognizer:
     def _load(self, path, target_value):
         training_imgs = os.listdir(path)
         for f in training_imgs:
+            if f.endswith('.db'):
+                continue
             img = Image.open(path + '/' + f)
             img = img.resize(self.down_res, Image.BILINEAR)
             self.trainingData.append(np.array(img.getdata()).flatten())

@@ -75,10 +75,10 @@ class Ui_widget(object):
         global c2
         global c3
         global c4 
-        c1 = int(494)
-        c2 = int(154)
-        c3 = int(1135)
-        c4 = int(717)
+        c1 = int(436)
+        c2 = int(55)
+        c3 = int(1010)
+        c4 = int(563)
 
     def statistic(self):
         url_1 = QtCore.QUrl('utilities\stat_1.pyw')
