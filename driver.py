@@ -28,11 +28,6 @@ class Driver:
         self.mover = move_maker.MoveMaker()
 
         self.prev_board = None
-        # self.background_img = Image.open('background.bmp')
-        # self.background_img = self.background_img.resize(
-        #     (self.background_img.size[0] / 4, self.background_img.size[1] / 4), Image.NEAREST)
-        # self.img_end_game = Image.open('end_screen.bmp')
-        # self.img_end_game = self.img_end_game.resize((self.img_end_game.size[0] / 4, self.img_end_game.size[1] / 4), Image.NEAREST)
 
     def play(self):
         moves = []
@@ -56,15 +51,14 @@ class Driver:
                     print 'Ending yo!'
                     break
                 else:
+                    self.grab_board()
                     score, mover = self.mover.solve_board(self.game_board, moves)
                     self.do_move(mover)
             time.sleep(0.4)  # wait for the cells to finish moving
 
     # It takes the screenshot of the board and then crops each cell using a nested loop
     def grab_board(self):
-        global game_board
         img = ImageGrab.grab()
-
         img = img.crop(self.board_box)
         for y in range(0, 9):
             for x in range(0, 9):
@@ -84,10 +78,12 @@ class Driver:
 
     def checkDiff(self, prev_board):
         currentBoard = self.get_board()
-        if self.compare_images(currentBoard, prev_board, 50) < 30:
-            return False
-        else:
+        if self.compare_images(currentBoard, prev_board, 50) > 30:
+            print 'They\'re different!!'
             return True
+        else:
+            print 'They\'re the same!'
+            return False
 
     # checks if the board is in moving state (It is in moving state after the candies have been exploded)
     def board_is_moving(self):
