@@ -1,7 +1,8 @@
 from copy import deepcopy as dc
-
 import utils
 
+
+# import prev
 
 class MoveMaker:
     def __init__(self):
@@ -182,26 +183,85 @@ class MoveMaker:
             return score_end, [end, start], end_board
 
     # main function to start solving the board
-    def solve_board(self, board, moves):
+
+    def solve_board(self, board):
         self.game_board = board
-        max_score = 0
-        chosen_move = []
-        for i in range(0, 8):
-            for j in range(0, 8):
-                possible_directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-                for d in possible_directions:
-                    score, move, b = self.check_direction((i, j), d)
-                    if score >= max_score:
-                        if moves.count(move) is 0 or moves.count([move[1], move[0]]) is 0:
+        filem = open('flag.txt', 'r+')
+        flag = filem.read()
+        filem.close()
+        if (flag == '0'):
+            max_score = 0
+            chosen_move = []
+            for i in range(0, 8):
+                for j in range(0, 8):
+                    possible_directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                    for d in possible_directions:
+                        score, move, b = self.check_direction((i, j), d)
+                        if score >= max_score:
                             max_score = score
                             chosen_move = move
 
-        # if(chosen_move[0][0] == chosen_move[1][0]):
-        #     print 1
-        # else:
-        #     print 0
+        elif (flag == '1'):
+            chosen_move = []
+            chosen_move = aux_solve(board)
+            if (chosen_move == 1):
+                filew = open('flag.txt', 'w+')
+                filew.write('0')
+                filew.close()
+                x = [(0, 0), (0, 0)]
+                return x
+                #solve_board(board)
+            else:
+                file = open('prev.txt', 'w+')
+                file.write(repr(chosen_move))
+                file.close()
+                print ("I am awesome", chosen_move)
+            return chosen_move
 
-        return max_score, chosen_move
+        filex = open('prev.txt', 'r+')
+        previous_move = filex.read()
+        filex.close()
+        
+        if (previous_move == str(chosen_move)):
+            filev = open('flag.txt', 'w+')
+            filev.write('1')
+            filev.close()
+        
+        file = open('prev.txt', 'w+')
+        file.write(repr(chosen_move))
+        file.close()
 
-# DONE: Complete this class with the evaluation functions as discussed.
+        print ('I am very awesome',chosen_move)
+        return chosen_move
+
+
+def aux_solve(board):
+    x = [(4, 5), (4, 6)]
+    for i in range(0, 8):
+        for j in range(0, 8):
+            if (j <= 5 and board[i][j] == board[i][j + 2] and board[i][j] == board[i][j + 3]):
+                chosen_move = [(i, j), (i, j + 1)]
+                return chosen_move
+            if (j >= 3 and board[i][j] == board[i][j - 2] and board[i][j] == board[i][j - 3]):
+                chosen_move = [(i, j - 1), (i, j)]
+                return chosen_move
+            if (i <= 5 and board[i][j] == board[i + 2][j] and board[i][j] == board[i + 3][j]):
+                chosen_move = [(i, j), (i + 1, j)]
+                return chosen_move
+            if (i >= 3 and board[i][j] == board[i - 2][j] and board[i][j] == board[i - 3][j]):
+                chosen_move = [(i - 1, j), (i, j)]
+                return chosen_move
+            if (i <= 7 and j <= 6 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+1][j+2]):
+            	chosen_move = [(i, j), (i+1, j)]
+            	return chosen_move
+           	if (i <= 7 and j >= 1 and j <= 7 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+1][j+1]):
+           		chosen_move = [(i, j), (i+1, j)]
+           		return chosen_move
+           	if ((i <= 6 and j >= 1 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+2][j-1]) or (i >= 2 and j >= 1 and board[i][j] == board[i-1][j-1] and board[i][j] == board[i-2][j-1])):
+           		chosen_move = [(i, j-1), (i, j)]
+           		return chosen_move
+           	if ((i <= 6 and j <= 7 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+2][j+1]) or (i >= 2 and j <= 7 and board[i][j] == board[i-1][j+1] and board[i][j] == board[i-2][j+1])):
+           		chosen_move = [(i, j), (i, j+1)]
+           		return chosen_move
+    return 1  # DONE: Complete this class with the evaluation functions as discussed.
 # DONE: Create the explosions function to see the benefits from the special candies (if any)
