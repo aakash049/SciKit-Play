@@ -216,6 +216,10 @@ class MoveMaker:
                 file.write(repr(chosen_move))
                 file.close()
                 print ("I am awesome", chosen_move)
+                '''if(chosen_move[0][0] == chosen_move[1][0]):
+            			print 1
+        			else:
+            			print 0'''
             return chosen_move
 
         filex = open('prev.txt', 'r+')
@@ -232,6 +236,10 @@ class MoveMaker:
         file.close()
 
         print ('I am very awesome',chosen_move)
+        '''if(chosen_move[0][0] == chosen_move[1][0]):
+            print 1
+        else:
+            print 0'''
         return chosen_move
 
 
