@@ -86,7 +86,6 @@ curtain = 100
 end = 101
 intro = 102
 loading = 103
-move = 104
 scoreboard = 105
 shop = 106
 

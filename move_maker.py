@@ -168,9 +168,9 @@ class MoveMaker:
     def check_direction(self, start, dir):
         end = (start[0] + dir[0], start[1] + dir[1])
         board = dc(self.game_board)
-        if start[0] < 0 or start[0] > self.board_size or end[0] < 0 or end[0] > self.board_size \
-                or start[1] < 0 or start[1] > self.board_size or end[1] < 0 or end[1] > self.board_size:
-            return -1, [], None
+        if start[0] < 0 or start[0] > self.board_size or end[0] <= 0 or end[0] >= self.board_size - 1 \
+                or start[1] < 0 or start[1] > self.board_size or end[1] <= 0 or end[1] >= self.board_size - 1:
+            return -1, []
 
         # swap
         board[start[0]][start[1]], board[end[0]][end[1]] = board[end[0]][end[1]], board[start[0]][start[1]]
@@ -178,9 +178,9 @@ class MoveMaker:
         score_end, end_board = self.evaluate_board(end, start, board)
 
         if score_start > score_end:
-            return score_start, [start, end], start_board
+            return score_start, [start, end]
         else:
-            return score_end, [end, start], end_board
+            return score_end, [end, start]
 
     # main function to start solving the board
 

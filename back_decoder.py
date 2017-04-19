@@ -32,7 +32,6 @@ class BackRecognizer:
         self._load(pt + '/end', end)
         self._load(pt + '/intro', intro)
         self._load(pt + '/loading', loading)
-        self._load(pt + '/move', move)
         self._load(pt + '/scoreboard', scoreboard)
         self._load(pt + '/shop', shop)
 
