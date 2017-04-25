@@ -196,7 +196,7 @@ class MoveMaker:
                 for j in range(0, 8):
                     possible_directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
                     for d in possible_directions:
-                        score, move, b = self.check_direction((i, j), d)
+                        score, move = self.check_direction((i, j), d)
                         if score >= max_score:
                             max_score = score
                             chosen_move = move
