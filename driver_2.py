@@ -30,15 +30,9 @@ class Driver:
         self.prev_board = None
 
     def play(self):
-        moves = []
-        mover = [(0,0), (0,0)]
         board_img = None
         while True:
             if not self.board_is_moving():
-                if not self.checkDiff(board_img):
-                    moves.append(mover)
-                else:
-                    moves = []
                 board_img = self.get_board()
                 board_state = self.back_recognizer.predict(board_img)
                 if board_state == curtain:
@@ -52,7 +46,7 @@ class Driver:
                     break
                 else:
                     self.grab_board()
-                    score, mover = self.mover.solve_board(self.game_board, moves)
+                    mover = self.mover.solve_board(self.game_board)
                     self.do_move(mover)
             time.sleep(0.4)  # wait for the cells to finish moving
 
