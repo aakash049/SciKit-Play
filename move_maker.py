@@ -192,8 +192,8 @@ class MoveMaker:
         if (flag == '0'):
             max_score = 0
             chosen_move = []
-            for i in range(0, 8):
-                for j in range(0, 8):
+            for i in xrange(0, 9):
+                for j in xrange(0, 9):
                     possible_directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
                     for d in possible_directions:
                         score, move = self.check_direction((i, j), d)
@@ -225,12 +225,12 @@ class MoveMaker:
         filex = open('prev.txt', 'r+')
         previous_move = filex.read()
         filex.close()
-        
+
         if (previous_move == str(chosen_move)):
             filev = open('flag.txt', 'w+')
             filev.write('1')
             filev.close()
-        
+
         file = open('prev.txt', 'w+')
         file.write(repr(chosen_move))
         file.close()
@@ -245,31 +245,31 @@ class MoveMaker:
 
 def aux_solve(board):
     x = [(4, 5), (4, 6)]
-    for i in range(0, 8):
-        for j in range(0, 8):
-            if (j <= 5 and board[i][j] == board[i][j + 2] and board[i][j] == board[i][j + 3]):
+    for i in xrange(0, 9):
+        for j in xrange(0, 9):
+            if j <= 5 and board[i][j] == board[i][j + 2] and board[i][j] == board[i][j + 3]:
                 chosen_move = [(i, j), (i, j + 1)]
                 return chosen_move
-            if (j >= 3 and board[i][j] == board[i][j - 2] and board[i][j] == board[i][j - 3]):
+            if j >= 3 and board[i][j] == board[i][j - 2] and board[i][j] == board[i][j - 3]:
                 chosen_move = [(i, j - 1), (i, j)]
                 return chosen_move
-            if (i <= 5 and board[i][j] == board[i + 2][j] and board[i][j] == board[i + 3][j]):
+            if i <= 5 and board[i][j] == board[i + 2][j] and board[i][j] == board[i + 3][j]:
                 chosen_move = [(i, j), (i + 1, j)]
                 return chosen_move
-            if (i >= 3 and board[i][j] == board[i - 2][j] and board[i][j] == board[i - 3][j]):
+            if i >= 3 and board[i][j] == board[i - 2][j] and board[i][j] == board[i - 3][j]:
                 chosen_move = [(i - 1, j), (i, j)]
                 return chosen_move
-            if (i <= 7 and j <= 6 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+1][j+2]):
-            	chosen_move = [(i, j), (i+1, j)]
-            	return chosen_move
-           	if (i <= 7 and j >= 1 and j <= 7 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+1][j+1]):
-           		chosen_move = [(i, j), (i+1, j)]
-           		return chosen_move
-           	if ((i <= 6 and j >= 1 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+2][j-1]) or (i >= 2 and j >= 1 and board[i][j] == board[i-1][j-1] and board[i][j] == board[i-2][j-1])):
-           		chosen_move = [(i, j-1), (i, j)]
-           		return chosen_move
-           	if ((i <= 6 and j <= 7 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+2][j+1]) or (i >= 2 and j <= 7 and board[i][j] == board[i-1][j+1] and board[i][j] == board[i-2][j+1])):
-           		chosen_move = [(i, j), (i, j+1)]
-           		return chosen_move
+            if i <= 7 and j <= 6 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+1][j+2]:
+                chosen_move = [(i, j), (i+1, j)]
+                return chosen_move
+            if 7 >= i >= 1 and j <= 7 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+1][j+1]:
+                chosen_move = [(i, j), (i+1, j)]
+                return chosen_move
+            if ((i <= 6 and j >= 1 and board[i][j] == board[i+1][j-1] and board[i][j] == board[i+2][j-1]) or (i >= 2 and j >= 1 and board[i][j] == board[i-1][j-1] and board[i][j] == board[i-2][j-1])):
+                chosen_move = [(i, j-1), (i, j)]
+                return chosen_move
+            if ((i <= 6 and j <= 7 and board[i][j] == board[i+1][j+1] and board[i][j] == board[i+2][j+1]) or (i >= 2 and j <= 7 and board[i][j] == board[i-1][j+1] and board[i][j] == board[i-2][j+1])):
+                chosen_move = [(i, j), (i, j+1)]
+                return chosen_move
     return 1  # DONE: Complete this class with the evaluation functions as discussed.
 # DONE: Create the explosions function to see the benefits from the special candies (if any)

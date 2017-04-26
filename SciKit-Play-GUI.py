@@ -56,29 +56,33 @@ class Ui_widget(object):
         driver_obj = driver.Driver(board_coords)
         driver_obj.play()
 
+    # For 768p Screen
     def combo_chosen_1(self):
         global counter
         counter = 0
         global c1
         global c2
         global c3
-        global c4 
-        c1 = int(688)
-        c2 = int(60)
-        c3 = int(1325)
-        c4 = int(622)
+        global c4
+        c1 = int(436)
+        c2 = int(54)
+        c3 = int(1011)
+        c4 = int(560)
+        print (c1, c2, c3, c4)
 
+    # For 1080p screen
     def combo_chosen_2(self):
         global counter
         counter = 0
         global c1
         global c2
         global c3
-        global c4 
-        c1 = int(436)
-        c2 = int(55)
-        c3 = int(1010)
-        c4 = int(563)
+        global c4
+        c1 = int(688)
+        c2 = int(60)
+        c3 = int(1325)
+        c4 = int(622)
+        print (c1, c2, c3, c4)
 
     def statistic(self):
         url_1 = QtCore.QUrl('utilities\stat_1.pyw')
@@ -243,7 +247,7 @@ class Ui_widget(object):
         self.radioButton.setChecked(False)
         self.radioButton.setObjectName(_fromUtf8("radioButton"))
         ##############################
-        self.radioButton.clicked.connect(self.combo_chosen_2)
+        self.radioButton.clicked.connect(self.combo_chosen_1)
         ###############################
         self.verticalLayout.addWidget(self.radioButton)
         self.radioButton_2 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
@@ -252,7 +256,7 @@ class Ui_widget(object):
                                                    "font: 87 12pt \"Lato Black\";"))
         self.radioButton_2.setObjectName(_fromUtf8("radioButton_2"))
         ##############################
-        self.radioButton_2.clicked.connect(self.combo_chosen_1)
+        self.radioButton_2.clicked.connect(self.combo_chosen_2)
         ###############################
         self.verticalLayout.addWidget(self.radioButton_2)
         self.radioButton_3 = QtGui.QRadioButton(self.horizontalLayoutWidget_2)
@@ -355,8 +359,8 @@ class Ui_widget(object):
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
                                            None))
         self.label_3.setText(_translate("widget", "Resolution:", None))
-        self.radioButton.setText(_translate("widget", "1920 x 1080", None))
-        self.radioButton_2.setText(_translate("widget", "1366 x 768", None))
+        self.radioButton.setText(_translate("widget", "1366 x 768", None))
+        self.radioButton_2.setText(_translate("widget", "1920 x 1080", None))
         self.radioButton_3.setText(_translate("widget", "Customized", None))
         self.label_4.setToolTip(_translate("widget",
                                            "<html><head/><body><p><span style=\" color:#ffffff;\">your coordinates</span></p></body></html>",
