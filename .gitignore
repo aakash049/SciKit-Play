@@ -5,7 +5,7 @@
 back_dat/
 cell_dat/
 *.db
-123.txt
+*.txt
 
 .idea/
 ### Python template

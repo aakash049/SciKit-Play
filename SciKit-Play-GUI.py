@@ -42,7 +42,7 @@ class Ui_widget(object):
         key.hook()
 
     def callmain(self):
-        if counter==1:
+        if counter == 1:
             global c1
             global c2
             global c3
@@ -78,10 +78,10 @@ class Ui_widget(object):
         global c2
         global c3
         global c4
-        c1 = int(688)
-        c2 = int(60)
-        c3 = int(1325)
-        c4 = int(622)
+        c1 = int(498)
+        c2 = int(65)
+        c3 = int(1130)
+        c4 = int(628)
         print (c1, c2, c3, c4)
 
     def statistic(self):
@@ -90,7 +90,8 @@ class Ui_widget(object):
 
     def combo_chosen_3(self):
         import win32api
-        win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message',QtCore.Qt.WindowStaysOnTopHint)
+        win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message',
+                            QtCore.Qt.WindowStaysOnTopHint)
         global counter
         counter = 1
 
@@ -346,7 +347,6 @@ class Ui_widget(object):
         self.retranslateUi(widget)
         QtCore.QMetaObject.connectSlotsByName(widget)
 
-
     def retranslateUi(self, widget):
         widget.setWindowTitle(_translate("widget", "SciKit-Play", None))
         self.b3.setText(_translate("widget", "Start SciKit-Play", None))
@@ -368,8 +368,10 @@ class Ui_widget(object):
         self.label_4.setText(_translate("widget", "Enter Coordinates Here :", None))
         self.b2_2.setText(_translate("widget", "Show Statistics", None))
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtGui.QApplication(sys.argv)
     widget = QtGui.QWidget()
     ui = Ui_widget()
