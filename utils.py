@@ -90,3 +90,6 @@ scoreboard = 105
 shop = 106
 
 back_recognizer = 'back.dat'
+
+horizontal_move = '0'
+vertical_move = '1'
