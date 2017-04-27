@@ -25,7 +25,7 @@ except AttributeError:
 
 
 class Ui_widget(object):
-    #############################################################################################################################
+    ##################################################################################################################
     def call(self):
         url = QtCore.QUrl('utilities\CursorPosition.exe')
         QtGui.QDesktopServices.openUrl(url)
@@ -68,6 +68,14 @@ class Ui_widget(object):
         c2 = int(54)
         c3 = int(1011)
         c4 = int(560)
+        self.v1.clear()
+        self.v2.clear()
+        self.v3.clear()
+        self.v4.clear()
+        self.v1.insert(str(c1))
+        self.v2.insert(str(c2))
+        self.v3.insert(str(c3))
+        self.v4.insert(str(c4))
         print (c1, c2, c3, c4)
 
     # For 1080p screen
@@ -82,6 +90,14 @@ class Ui_widget(object):
         c2 = int(65)
         c3 = int(1130)
         c4 = int(628)
+        self.v1.clear()
+        self.v2.clear()
+        self.v3.clear()
+        self.v4.clear()
+        self.v1.insert(str(c1))
+        self.v2.insert(str(c2))
+        self.v3.insert(str(c3))
+        self.v4.insert(str(c4))
         print (c1, c2, c3, c4)
 
     def statistic(self):
@@ -89,13 +105,17 @@ class Ui_widget(object):
         QtGui.QDesktopServices.openUrl(url_1)
 
     def combo_chosen_3(self):
+        self.v1.clear()
+        self.v2.clear()
+        self.v3.clear()
+        self.v4.clear()
         import win32api
         win32api.MessageBox(0, 'Please Get your coordinates and Enter them on the right side!', 'Message',
                             QtCore.Qt.WindowStaysOnTopHint)
         global counter
         counter = 1
 
-    #############################################################################################################################
+    ###################################################################################################################
 
     def setupUi(self, widget):
         widget.setObjectName(_fromUtf8("widget"))
