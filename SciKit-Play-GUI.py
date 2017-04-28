@@ -101,8 +101,11 @@ class Ui_widget(object):
         print (c1, c2, c3, c4)
 
     def statistic(self):
-        import stat_1
-        stat_1.calstat()
+        import subprocess
+
+        me = subprocess.call([sys.executable, 'stat_1.py'])
+        '''import stat_1
+        stat_1.me()'''
 
     def combo_chosen_3(self):
         self.v1.clear()
