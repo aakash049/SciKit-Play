@@ -30,6 +30,10 @@ class Driver:
 
         self.mover = move_maker.MoveMaker()
 
+        fx = open('movefile.txt', "w+")
+        fx.write('')
+        fx.close()
+
 
     def close_script(self):
         print 'wow'

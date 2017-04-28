@@ -1,9 +1,6 @@
 from copy import deepcopy as dc
 import utils
 
-
-# import prev
-
 class MoveMaker:
     def __init__(self):
         self.board_size = utils.board_size
@@ -182,8 +179,17 @@ class MoveMaker:
         else:
             return score_end, [end, start]
 
-    # main function to start solving the board
 
+    # function to maintain stats in file
+    def addStat(self, move):
+        filex = open('movefile.txt', 'a')
+        if move[0][0] == move[1][0]:
+            filex.write('1\n')
+        else:
+            filex.write('0\n')
+        filex.close()
+
+    # main function to start solving the board
     def solve_board(self, board):
         self.game_board = board
         filem = open('flag.txt', 'r+')
@@ -210,17 +216,11 @@ class MoveMaker:
                 filew.close()
                 x = [(0, 0), (0, 0)]
                 return x
-                #solve_board(board)
             else:
                 file = open('prev.txt', 'w+')
                 file.write(repr(chosen_move))
                 file.close()
                 print ("I am awesome", chosen_move)
-                '''if(chosen_move[0][0] == chosen_move[1][0]):
-            			print 1
-        			else:
-            			print 0'''
-            return chosen_move
 
         filex = open('prev.txt', 'r+')
         previous_move = filex.read()
@@ -240,6 +240,8 @@ class MoveMaker:
             print 1
         else:
             print 0'''
+        self.addStat(chosen_move)
+
         return chosen_move
 
 

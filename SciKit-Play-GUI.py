@@ -101,8 +101,8 @@ class Ui_widget(object):
         print (c1, c2, c3, c4)
 
     def statistic(self):
-        url_1 = QtCore.QUrl('utilities\stat_1.pyw')
-        QtGui.QDesktopServices.openUrl(url_1)
+        import stat_1
+        stat_1.calstat()
 
     def combo_chosen_3(self):
         self.v1.clear()

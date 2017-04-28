@@ -1,6 +1,7 @@
 
 def calstat():
         import matplotlib
+        import utils
 
         matplotlib.use('Qt4Agg')
         from matplotlib import pyplot as plt
